@@ -6,25 +6,24 @@ namespace DataStructures
 {
     class DataStructure
     {
-        public void Insertion(IComparable[] names)
+        public void BubbleSort()
         {
-            int i, j;
-
-            for (i = 1; i < names.Length; i++)
+            int[] numbers = { 43, 70, 20, 77, 14 };
+            int temp;
+            for (int i = 0; i <= numbers.Length - 2; i++)
             {
-                IComparable data = names[i];
-                j = i - 1;
-                while ((j >= 0) && (names[j].CompareTo(data) > 0))
+                for (int j = 0; j <= numbers.Length - 2; j++)
                 {
-                    names[j + 1] = names[j];
-                    j--;
+                    if (numbers[j] > numbers[j + 1])
+                    {
+                        temp = numbers[j + 1];
+                        numbers[j + 1] = numbers[j];
+                        numbers[j] = temp;
+                    }
                 }
-                names[j + 1] = data;
             }
-            foreach (var item in names)
-            {
-                Console.WriteLine(item);
-            }
+            foreach (int p in numbers)
+                Console.Write($"{p}, ");
         }
     }
 }
