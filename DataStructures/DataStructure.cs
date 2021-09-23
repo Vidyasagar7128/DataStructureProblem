@@ -6,24 +6,20 @@ namespace DataStructures
 {
     class DataStructure
     {
-        public void BubbleSort()
+        public void Anagrams()
         {
-            int[] numbers = { 43, 70, 20, 77, 14 };
-            int temp;
-            for (int i = 0; i <= numbers.Length - 2; i++)
-            {
-                for (int j = 0; j <= numbers.Length - 2; j++)
-                {
-                    if (numbers[j] > numbers[j + 1])
-                    {
-                        temp = numbers[j + 1];
-                        numbers[j + 1] = numbers[j];
-                        numbers[j] = temp;
-                    }
-                }
-            }
-            foreach (int p in numbers)
-                Console.Write($"{p}, ");
+            string str1 = "heart";
+            string str2 = "earth";
+            char[] ch1 = str1.ToLower().ToCharArray();
+            char[] ch2 = str2.ToLower().ToCharArray();
+            Array.Sort(ch1);
+            Array.Sort(ch2);
+            string first = new string(ch1);
+            string second = new string(ch2);
+            if (first == second)
+                Console.WriteLine("Strings are Anagrams");
+            else
+                Console.WriteLine("Strings are not Anagrams");
         }
     }
 }

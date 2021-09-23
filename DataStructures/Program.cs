@@ -8,7 +8,7 @@ namespace DataStructures
         {
             Console.WriteLine("Data Structure!");
             DataStructure dataStructure = new DataStructure();
-            dataStructure.BubbleSort();
+            dataStructure.Anagrams();
         }
     }
 }
