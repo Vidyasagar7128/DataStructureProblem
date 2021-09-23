@@ -6,28 +6,25 @@ namespace DataStructures
 {
     class DataStructure
     {
-        public int FindWord(string[] words, string str)
+        public void Insertion(IComparable[] names)
         {
-            int start = 0;
-            int end = words.Length - 1;
-            while (start <= end)
+            int i, j;
+
+            for (i = 1; i < names.Length; i++)
             {
-                int mid = start + end / 2;
-                int result = str.CompareTo(words[mid]);
-                if (result == 0)
+                IComparable data = names[i];
+                j = i - 1;
+                while ((j >= 0) && (names[j].CompareTo(data) > 0))
                 {
-                    return mid;
+                    names[j + 1] = names[j];
+                    j--;
                 }
-                if (result > 0)
-                {
-                    start = mid + 1;
-                }
-                else
-                {
-                    end = mid - 1;
-                }
+                names[j + 1] = data;
             }
-            return -1;
+            foreach (var item in names)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
