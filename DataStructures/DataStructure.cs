@@ -4,22 +4,120 @@ using System.Text;
 
 namespace DataStructures
 {
-    class DataStructure
+    class DataStructure<Gtype>
     {
-        public void Anagrams()
+        private Node<Gtype> head;
+        private int count;
+        public DataStructure()
         {
-            string str1 = "heart";
-            string str2 = "earth";
-            char[] ch1 = str1.ToLower().ToCharArray();
-            char[] ch2 = str2.ToLower().ToCharArray();
-            Array.Sort(ch1);
-            Array.Sort(ch2);
-            string first = new string(ch1);
-            string second = new string(ch2);
-            if (first == second)
-                Console.WriteLine("Strings are Anagrams");
+            this.head = null;
+            this.count = 0;
+        }
+        public bool Empty
+        {
+            get { return this.count == 0; }
+        }
+        public int Count
+        {
+            get { return this.count; }
+        }
+        public string AddPosition(int index, string d)
+        {
+            if (index < 0)
+            {
+                throw new ArgumentOutOfRangeException($"Index:{index}");
+            }
+            if (index > count)
+            {
+                index = count;
+            }
+            Node<Gtype> current = this.head;
+            if (this.Empty || index == 0)
+            {
+                this.head = new Node<Gtype>(d, this.head);
+            }
             else
-                Console.WriteLine("Strings are not Anagrams");
+            {
+                for (int i = 0; i < index - 1; i++)
+                {
+                    current = current.Next;
+                }
+                current.Next = new Node<Gtype>(d, current.Next);
+            }
+            count++;
+            return d;
+        }
+        public string Add(string d)
+        {
+            return this.AddPosition(count, d);
+        }
+        public bool Search(string val)
+        {
+            Node<Gtype> current = this.head;
+            for (int i = 0; i < count; i++)
+            {
+                if (current.Data.Equals(val))
+                {
+                    return true;
+                }
+                current = current.Next;
+            }
+            return false;
+        }
+        public void Show()
+        {
+            Node<Gtype> current = this.head;
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine(current.Data);
+                current = current.Next;
+            }
+        }
+        public string Remove(int index)
+        {
+            if (index < 0)
+            {
+                throw new ArgumentOutOfRangeException($"Index:{index}");
+            }
+            if (this.Empty)
+                return "";
+
+            if (index >= this.count)
+            {
+                Console.WriteLine($"Can not Delete by {index} Index");
+            }
+            Node<Gtype> current = this.head;
+            string result = "";
+            if (index == 0)
+            {
+                result = current.Data;
+                this.head = current.Next;
+            }
+            else
+            {
+                for (int i = 0; i < index - 1; i++)
+                    current = current.Next;
+                result = current.Next.Data;
+
+                current.Next = current.Next.Next;
+            }
+            count--;
+            return result;
+        }
+        public string RemoveData(string word)
+        {
+            Node<Gtype> current = this.head;
+            int index = 0;
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine(current.Data);
+                if (current.Data == word)
+                {
+                    index = i;
+                }
+                current = current.Next;
+            }
+            return Remove(index);
         }
     }
 }
