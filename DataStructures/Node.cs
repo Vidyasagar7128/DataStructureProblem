@@ -8,10 +8,10 @@ namespace DataStructures
     {
         private string data;
         private Node<Gtype> next;
-
         public Node(string data)
         {
             this.data = data;
+            next = null;
         }
         public string Data
         {
