@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace DataStructures
@@ -70,6 +71,7 @@ namespace DataStructures
             for (int i = 0; i < count; i++)
             {
                 Console.WriteLine(current.Data);
+                File.WriteAllText(@"C:\Users\vidya\Desktop\DotNet\DataStructures\textfile.txt", current.Data);
                 current = current.Next;
             }
         }
@@ -91,12 +93,16 @@ namespace DataStructures
             if (index == 0)
             {
                 result = current.Data;
+                File.AppendAllText(@"C:\Users\vidya\Desktop\DotNet\DataStructures\textfile.txt", current.Data);
                 this.head = current.Next;
             }
             else
             {
                 for (int i = 0; i < index - 1; i++)
+                {
                     current = current.Next;
+                }
+                File.WriteAllText(@"C:\Users\vidya\Desktop\DotNet\DataStructures\textfile.txt", current.Data);
                 result = current.Next.Data;
 
                 current.Next = current.Next.Next;
