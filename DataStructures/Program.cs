@@ -9,9 +9,7 @@ namespace DataStructures
         {
             Console.WriteLine("Data Structure!");
             DataStructure<string> dataStructure = new DataStructure<string>();
-            dataStructure.Enqueue("radar");
-            dataStructure.MatchResult();
-            Console.WriteLine(dataStructure.IsEmpty());
+            dataStructure.Account();
         }
     }
 }
