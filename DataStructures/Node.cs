@@ -13,11 +13,6 @@ namespace DataStructures
         {
             this.data = data;
         }
-        public Node(string data, Node<Gtype> next)
-        {
-            this.data = data;
-            this.next = next;
-        }
         public string Data
         {
             get { return this.data; }

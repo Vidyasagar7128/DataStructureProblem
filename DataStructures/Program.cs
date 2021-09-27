@@ -9,34 +9,34 @@ namespace DataStructures
         {
             Console.WriteLine("Data Structure!");
             DataStructure<string> dataStructure = new DataStructure<string>();
-            //string str = "read the text from a file";
-            string f1 = File.ReadAllText(@"C:\Users\vidya\Desktop\DotNet\DataStructures\textfile.txt");
-            string[] str1 = f1.Split(" ");
-            for(int i = 0; i < str1.Length; i++)
+            string str = "(5+6)∗(7+8)/(4+3)(5+6)∗(7+8)/(4+3)";
+            string[] str1 = str.Split("(");
+            for(int i = 0; i < str.Length; i++)
             {
-                dataStructure.Add(str1[i]);
+                if(str[i] == '(')
+                {
+                    dataStructure.Push("(");
+                    Console.WriteLine(i);
+                }
             }
-            dataStructure.Show();
-            Console.WriteLine();
-            Console.WriteLine("Search Word or Add.");
-            string name = Console.ReadLine();
-            Console.WriteLine(dataStructure.Search(name));
-            bool present = dataStructure.Search(name);
-            if (present)
+            for (int i = 0; i < str.Length; i++)
             {
-                Console.WriteLine("Data are Present.");
-                Console.WriteLine();
-                dataStructure.RemoveData(name);
-                Console.WriteLine();
+                if (str[i] == ')')
+                {
+                    dataStructure.Pop();
+                    Console.WriteLine(i);
+                }
             }
-
+            Console.WriteLine(str);
+            Console.WriteLine("----------------------------");
+            if(dataStructure.Show() %2 == 0)
+            {
+                Console.WriteLine("Arithmetic Expression is Balanced.");
+            }
             else
             {
-                dataStructure.Add(name);
-                Console.WriteLine("Word Added to LinkedList");
-                Console.WriteLine();
+                Console.WriteLine("Arithmetic Expression is Not Balanced.");
             }
-            dataStructure.Show();
         }
     }
 }

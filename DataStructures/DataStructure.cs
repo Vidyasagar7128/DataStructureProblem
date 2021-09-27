@@ -7,123 +7,40 @@ namespace DataStructures
 {
     class DataStructure<Gtype>
     {
-        private Node<Gtype> head;
-        private int count;
+        private Node<Gtype> top;
         public DataStructure()
         {
-            this.head = null;
-            this.count = 0;
+            this.top = null;
         }
-        public bool Empty
+        internal void Push(string d)
         {
-            get { return this.count == 0; }
-        }
-        public int Count
-        {
-            get { return this.count; }
-        }
-        public string AddPosition(int index, string d)
-        {
-            if (index < 0)
-            {
-                throw new ArgumentOutOfRangeException($"Index:{index}");
-            }
-            if (index > count)
-            {
-                index = count;
-            }
-            Node<Gtype> current = this.head;
-            if (this.Empty || index == 0)
-            {
-                this.head = new Node<Gtype>(d, this.head);
-            }
+            Node<Gtype> node = new Node<Gtype>(d);
+            if (this.top == null)
+                node.Next = null;
             else
-            {
-                for (int i = 0; i < index - 1; i++)
-                {
-                    current = current.Next;
-                }
-                current.Next = new Node<Gtype>(d, current.Next);
-            }
-            count++;
-            return d;
+                node.Next = this.top;
+            this.top = node;
+            Console.WriteLine($"data : {d}");
         }
-        public string Add(string d)
+        public void Pop()
         {
-            return this.AddPosition(count, d);
+            if (this.top == null)
+            {
+                Console.WriteLine("Empty Stack");
+            }
+            Console.WriteLine($"{this.top.Data} :is Poped");
+            this.top = this.top.Next;
         }
-        public bool Search(string val)
+        public int Show()
         {
-            Node<Gtype> current = this.head;
-            for (int i = 0; i < count; i++)
+            int count = 0;
+            Node<Gtype> temp = this.top;
+            while (temp != null)
             {
-                if (current.Data.Equals(val))
-                {
-                    return true;
-                }
-                current = current.Next;
+                temp = temp.Next;
+                count++;
             }
-            return false;
-        }
-        public void Show()
-        {
-            Node<Gtype> current = this.head;
-            for (int i = 0; i < count; i++)
-            {
-                Console.WriteLine(current.Data);
-                File.WriteAllText(@"C:\Users\vidya\Desktop\DotNet\DataStructures\textfile.txt", current.Data);
-                current = current.Next;
-            }
-        }
-        public string Remove(int index)
-        {
-            if (index < 0)
-            {
-                throw new ArgumentOutOfRangeException($"Index:{index}");
-            }
-            if (this.Empty)
-                return "";
-
-            if (index >= this.count)
-            {
-                Console.WriteLine($"Can not Delete by {index} Index");
-            }
-            Node<Gtype> current = this.head;
-            string result = "";
-            if (index == 0)
-            {
-                result = current.Data;
-                File.AppendAllText(@"C:\Users\vidya\Desktop\DotNet\DataStructures\textfile.txt", current.Data);
-                this.head = current.Next;
-            }
-            else
-            {
-                for (int i = 0; i < index - 1; i++)
-                {
-                    current = current.Next;
-                }
-                File.WriteAllText(@"C:\Users\vidya\Desktop\DotNet\DataStructures\textfile.txt", current.Data);
-                result = current.Next.Data;
-
-                current.Next = current.Next.Next;
-            }
-            count--;
-            return result;
-        }
-        public string RemoveData(string word)
-        {
-            Node<Gtype> current = this.head;
-            int index = 0;
-            for (int i = 0; i < count; i++)
-            {
-                Console.WriteLine(current.Data);
-                if (current.Data == word)
-                {
-                    index = i;
-                }
-                current = current.Next;
-            }
-            return Remove(index);
+            return count;
         }
     }
 }
