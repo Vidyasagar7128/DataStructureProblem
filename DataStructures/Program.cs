@@ -9,7 +9,7 @@ namespace DataStructures
         {
             Console.WriteLine("Data Structure!");
             DataStructure<string> dataStructure = new DataStructure<string>();
-            dataStructure.Account();
+            dataStructure.Prime();
         }
     }
 }
