@@ -29,14 +29,10 @@ namespace DataStructures
             }
             Console.WriteLine(str);
             Console.WriteLine("----------------------------");
-            if(dataStructure.Show() %2 == 0)
-            {
+            if(dataStructure.Show() == 0)
                 Console.WriteLine("Arithmetic Expression is Balanced.");
-            }
             else
-            {
                 Console.WriteLine("Arithmetic Expression is Not Balanced.");
-            }
         }
     }
 }
